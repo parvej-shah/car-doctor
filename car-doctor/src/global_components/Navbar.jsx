@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { Search, ShoppingBag } from "lucide-react";
 import Image from "next/image";
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
@@ -20,7 +21,7 @@ const Navbar = () => {
   // Close drawer when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
+      if (menuRef.current && !(menuRef.current, HTMLElement).contains(event.target , Node)) {
         setIsMenuOpen(false);
       }
     };
@@ -36,10 +37,15 @@ const Navbar = () => {
 
   return (
     <div className="relative">
-      <div className="navbar bg-white py-4 shadow-sm px-4 md:px-10">
+      <div
+        className="navbar py-2 shadow-sm px-4 md:px-10"
+        style={{
+          backgroundImage: "linear-gradient(174.2deg, rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4%)",
+        }}
+      >
         <div className="navbar-start">
           <a className="flex items-center gap-2">
-            <Image src={"/assets/logo.svg"} alt="Logo" width={80} height={60} />
+            <Image src={"/assets/logo.svg"} alt="Logo" width={70} height={50} />
           </a>
         </div>
 
@@ -64,12 +70,14 @@ const Navbar = () => {
         <div className="navbar-end gap-4">
           <div className="hidden md:flex gap-4 items-center">
             <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-circle">
-            <ShoppingBag className="w-5 h-5" />
+              <ShoppingBag className="w-5 h-5" />
             </button>
             <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-circle">
-            <Search className="w-5 h-5" />
+              <Search className="w-5 h-5" />
             </button>
-            <button className="btn btn-outline border-primary-bg text-primary-bg hover:text-white hover:bg-primary-bg">Appointment</button>
+            <button className="btn btn-outline border-primary-bg text-primary-bg hover:text-white hover:bg-primary-bg">
+              Appointment
+            </button>
           </div>
 
           {/* Mobile hamburger button */}
@@ -88,7 +96,10 @@ const Navbar = () => {
 
       {/* Overlay */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity" onClick={() => setIsMenuOpen(false)}></div>
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
+          onClick={() => setIsMenuOpen(false)}
+        ></div>
       )}
 
       {/* Side Drawer */}
@@ -127,12 +138,14 @@ const Navbar = () => {
 
         <div className="flex flex-col gap-4 mt-6 px-4">
           <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-block">
-          <ShoppingBag className="w-5 h-5" />
+            <ShoppingBag className="w-5 h-5" />
           </button>
           <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-block">
-          <Search className="w-5 h-5" />
+            <Search className="w-5 h-5" />
           </button>
-          <button className="btn btn-outline btn-primary btn-block">Appointment</button>
+          <button className="btn btn-outline btn-primary btn-block">
+            Appointment
+          </button>
         </div>
       </div>
     </div>

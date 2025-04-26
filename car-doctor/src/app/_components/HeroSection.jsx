@@ -1,58 +1,46 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function HeroSection() {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in ms
-      once: true,     // Only animate once
+      duration: 1000,
+      once: true,
     });
   }, []);
 
   return (
-    <section className="relative min-h-screen flex items-center justify-start overflow-hidden">
-      {/* Background Image */}
-      <Image
-        src="/your-image-path/3aa144c4-8ca5-49b5-b5e4-4fc0f3858fa9.png"
-        alt="Car Servicing Background"
-        fill
-        quality={100}
-        className="object-cover object-center z-0"
-        priority
-      />
-
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black bg-opacity-60 z-10"></div>
-
-      {/* Content */}
-      <div className="relative z-20 container mx-auto px-6">
-        <div className="max-w-xl" data-aos="fade-up">
-          <h1 className="text-5xl font-bold text-white mb-6 leading-tight">
-            Affordable <br />
-            Price For Car <br />
-            Servicing
-          </h1>
-          <p className="text-lg text-gray-300 mb-8" data-aos="fade-up" data-aos-delay="200">
-            There Are Many Variations Of Passages Of Available, But The Majority Have Suffered Alteration In Some Form
-          </p>
-          <div className="flex space-x-4" data-aos="fade-up" data-aos-delay="400">
-            <a
-              href="#"
-              className="bg-[#FF3811] text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-90 transition"
-            >
-              Discover More
-            </a>
-            <a
-              href="#"
-              className="border border-white text-white px-6 py-3 rounded-md font-semibold hover:bg-[#10b981] hover:border-[#10b981] transition"
-            >
-              Latest Project
-            </a>
-          </div>
+    <section
+      className="h-[500px] flex items-center justify-center bg-gradient-to-b from-[#fff4e4] via-[#f0f6ee] to-[#f3f3f3] text-center px-4"
+      style={{
+        backgroundImage: "linear-gradient(174.2deg, rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4%)",
+      }}
+    >
+      <div className="max-w-2xl" data-aos="fade-up">
+        <h1 className="text-5xl md:text-6xl font-bold text-[#444444] mb-6 leading-tight">
+          Affordable <br />
+          Price For Car <br />
+          Servicing
+        </h1>
+        <p className="text-lg text-[#737373] mb-8" data-aos="fade-up" data-aos-delay="200">
+          There Are Many Variations Of Passages Of Available, But The Majority Have Suffered Alteration In Some Form.
+        </p>
+        <div className="flex justify-center gap-4" data-aos="fade-up" data-aos-delay="400">
+          <a
+            href="#"
+            className="bg-[#FF3811] text-white px-6 py-3 rounded-md font-semibold hover:bg-opacity-90 hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out"
+          >
+            Discover More
+          </a>
+          <a
+            href="#"
+            className="border border-[#444444] text-[#444444] px-6 py-3 rounded-md font-semibold hover:bg-[#10b981] hover:text-white hover:border-[#10b981] hover:scale-105 hover:shadow-md transition-all duration-300 ease-in-out"
+          >
+            Latest Project
+          </a>
         </div>
       </div>
     </section>

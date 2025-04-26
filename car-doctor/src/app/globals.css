@@ -8,4 +8,44 @@
   --color-secondary-text: #737373;
   --color-white: #ffffff;
   --color-secondary-bg: #F3F3F3;
+
+  /* --- Main Hero / Background Section Gradient --- */
+  --gradient-hero-bg: linear-gradient(
+    174.2deg,
+    rgba(255, 244, 228, 1) 7.1%,  /* soft warm */
+    rgba(240, 246, 238, 1) 67.4%  /* soft cool */
+  );
+  /* 👉 Use for: hero background, large sections, body background */
+
+  /* --- Call-to-Action (Button/Highlight) Gradient --- */
+  --gradient-cta: linear-gradient(
+    135deg,
+    #FF3811,  /* primary brand red */
+    #10b981   /* secondary emerald green */
+  );
+  /* 👉 Use for: primary CTA buttons, hover effects, banners */
+
+  /* --- Soft Glass/Overlay Gradient (Glassmorphism) --- */
+  --gradient-glass-overlay: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.7),
+    rgba(243, 243, 243, 0.3)
+  );
+  /* 👉 Use for: navbar background, modal backgrounds, frosted cards */
+
+  /* --- Subtle Section Divider Gradient --- */
+  --gradient-divider: linear-gradient(
+    90deg,
+    #f3f3f3 0%,
+    #ffffff 100%
+  );
+  /* 👉 Use for: section dividers, footers, subtle backgrounds */
+
+  /* --- Button Hover Background Gradient --- */
+  --gradient-button-hover: linear-gradient(
+    135deg,
+    #10b981,
+    #FF3811
+  );
+  /* 👉 Use for: button hover states, link hovers, action cards */
 }
