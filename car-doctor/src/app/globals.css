@@ -42,7 +42,7 @@
   /* 👉 Use for: section dividers, footers, subtle backgrounds */
 
   /* --- Button Hover Background Gradient --- */
-  --gradient-button-hover: linear-gradient(
+  --color-button-hover: linear-gradient(
     135deg,
     #10b981,
     #FF3811

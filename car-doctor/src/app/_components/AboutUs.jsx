@@ -42,7 +42,7 @@ const AboutUs = () => {
           The Majority Have Suffered Alteration In Some Form, By Injected Humour, Or
           Randomised Words Which Don’t Look Even Slightly Believable.
         </p>
-        <button className="bg-[var(--color-primary-bg)] hover:bg-[var(--gradient-button-hover)] text-[var(--color-white)] py-3 px-6 rounded-md font-medium shadow-lg transition-all duration-300">
+        <button className="bg-[var(--color-primary-bg)] hover:bg-gradient-to-bl from-primary-bg to-orange-300 text-[var(--color-white)] py-3 px-6 rounded-md font-medium shadow-lg transition-all duration-300">
           Get More Info
         </button>
       </div>
