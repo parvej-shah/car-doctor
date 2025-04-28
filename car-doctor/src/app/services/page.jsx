@@ -1,4 +1,5 @@
 import AutoRepairServices from "./_components/AutoRepairServices ";
+import AutoRepairVideoSection from "./_components/AutoRepairVideoSection";
 import ProcessSteps from "./_components/ProcessSteps";
 import ServiceHeader from "./_components/ServiceHeader";
 import Services from "./_components/Services";
@@ -14,6 +15,7 @@ export default function Page() {
             <AutoRepairServices />
             <UniqueCarEngineService/>
             <ProcessSteps />
+            <AutoRepairVideoSection />
         </div>
         <div className="w-full md:w-1/4 ">
             <Services />
