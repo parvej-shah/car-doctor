@@ -5,7 +5,7 @@ const AutoRepairServices = () => {
 
 
   return (
-    <section className="w-full gap-8 max-w-6xl mx-auto my-12 bg-white">
+    <section className="w-full gap-8 max-w-6xl mx-auto my-6 bg-white">
       {/* Left Section - Image */}
       <div className="w-full h-64 md:h-96 relative">
         <Image

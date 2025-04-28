@@ -27,7 +27,7 @@ const UniqueCarEngineService = () => {
   const placeholderText = "There Are Many Variations Of Passages Of Lorem Ipsum Available, But The Majority Have Suffered Alteration In Some Form, By Injected Humour, Or Randomised Words Which Don't Look Even Slightly Believable. If You Are Going To Use A Passage Of Lorem Ipsum, You Need To Be Sure There Isn't Anything Embarrassing Hidden In The Middle Of Text.";
 
   return (
-    <section className="max-w-6xl mx-auto px-4 py-12">
+    <section className="max-w-6xl mx-auto px-4 py-4">
       <h1 className="text-3xl font-bold mb-4">Unique Car Engine Service</h1>
       
       <p className="text-gray-600 mb-8">
