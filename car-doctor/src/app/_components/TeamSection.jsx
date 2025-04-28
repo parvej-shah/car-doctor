@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper/modules';
+import { Autoplay, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -11,7 +11,7 @@ const TeamSection = () => {
     {
       name: "John Doe",
       position: "Engine Expert",
-      image: "/team-member-1.jpg",
+      image: "/assets/images/team/1.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -22,7 +22,7 @@ const TeamSection = () => {
     {
       name: "Jane Smith",
       position: "Engine Expert",
-      image: "/team-member-2.jpg",
+      image: "/assets/images/team/2.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -33,7 +33,7 @@ const TeamSection = () => {
     {
       name: "Mike Johnson",
       position: "Engine Expert",
-      image: "/team-member-3.jpg",
+      image: "/assets/images/team/3.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -44,7 +44,7 @@ const TeamSection = () => {
     {
       name: "Sarah Williams",
       position: "Engine Expert",
-      image: "/team-member-4.jpg",
+      image: "/assets/images/team/1.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -55,7 +55,7 @@ const TeamSection = () => {
     {
       name: "David Brown",
       position: "Engine Expert",
-      image: "/team-member-5.jpg",
+      image: "/assets/images/team/2.jpg",
       social: {
         facebook: "#",
         twitter: "#",
@@ -66,9 +66,7 @@ const TeamSection = () => {
   ];
 
   return (
-    <section className="py-16" style={{
-      backgroundImage: "linear-gradient(174.2deg, rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4%)",
-    }}>
+    <section className="py-16 bg-white">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
@@ -87,10 +85,15 @@ const TeamSection = () => {
         {/* Team Slider */}
         <div className="relative">
           <Swiper
-            modules={[Navigation]}
+            modules={[Navigation,Autoplay]}
             navigation={{
               nextEl: '.team-swiper-button-next',
               prevEl: '.team-swiper-button-prev',
+            }}
+            autoplay={{
+              delay: 2000, 
+              disableOnInteraction: false, 
+              pauseOnMouseEnter: true 
             }}
             spaceBetween={30}
             slidesPerView={1}
@@ -156,12 +159,12 @@ const TeamSection = () => {
           </Swiper>
 
           {/* Custom Navigation Buttons */}
-          <button className="team-swiper-button-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 transform bg-white p-2 rounded-full shadow-md hover:bg-[var(--color-primary-bg)] hover:text-white transition-all duration-300">
+          <button className="team-swiper-button-prev absolute left-0 top-1/2 z-10 -translate-y-1/2 transform bg-primary-bg/80 p-2 rounded-full shadow-md hover:bg-[var(--color-primary-bg)] hover:text-white transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          <button className="team-swiper-button-next absolute right-0 top-1/2 z-10 -translate-y-1/2 transform bg-white p-2 rounded-full shadow-md hover:bg-[var(--color-primary-bg)] hover:text-white transition-all duration-300">
+          <button className="team-swiper-button-next absolute right-0 top-1/2 z-10 -translate-y-1/2 transform bg-primary-bg/80  p-2 rounded-full shadow-md hover:bg-[var(--color-primary-bg)] hover:text-white transition-all duration-300">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

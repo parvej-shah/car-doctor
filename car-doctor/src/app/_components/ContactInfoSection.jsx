@@ -2,7 +2,9 @@ import React from "react";
 
 const ContactInfoSection = () => {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 px-4" style={{
+      backgroundImage: "linear-gradient(174.2deg, rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4%)",
+    }}>
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row gap-4 justify-center">
           {/* Opening Hours */}

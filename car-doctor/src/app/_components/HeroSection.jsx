@@ -14,7 +14,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="h-[500px] flex items-center justify-center bg-gradient-to-b from-[#fff4e4] via-[#f0f6ee] to-[#f3f3f3] text-center px-4"
+      className="h-[550px] flex items-center justify-center bg-gradient-to-b from-[#fff4e4] via-[#f0f6ee] to-[#f3f3f3] text-center px-4"
       style={{
         backgroundImage: "linear-gradient(174.2deg, rgba(255,244,228,1) 7.1%, rgba(240,246,238,1) 67.4%)",
       }}
