@@ -20,13 +20,14 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
         {children}
         <Footer />
+        <div className="footer-note">© 2023 Car Doctor. All rights reserved.</div>
       </body>
     </html>
   );
