@@ -1,7 +1,11 @@
+import dbConnect from "@/lib/dbConnect";
 import React from "react";
+import { FaArrowRight } from "react-icons/fa";
 
-const ServicesSection = () => {
-  const services = [
+const ServicesSection = async() => {
+
+  
+  const services2 = [
     {
       title: "Electrical System",
       description: "Professional electrical diagnostics and repairs",
@@ -18,7 +22,8 @@ const ServicesSection = () => {
       price: "$20.00",
     },
   ];
-
+  const servicesCollection = await dbConnect("services");
+  const services = await servicesCollection.find({}).toArray();
   return (
     <section className="py-16 bg-[var(--color-secondary-bg)]">
       <div className="container mx-auto px-4">
@@ -39,45 +44,29 @@ const ServicesSection = () => {
 
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          {[...services, ...services].map((service, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
-            >
-              <div className="flex flex-col h-full">
-                <h3 className="text-xl font-bold text-[var(--color-primary-text)] mb-2">
-                  {service.title}
-                </h3>
-                <p className="text-[var(--color-secondary-text)] mb-4 flex-grow">
-                  {service.description}
-                </p>
-                <div className="flex justify-between items-center">
-                  <span className="text-[var(--color-primary-bg)] font-bold">
-                    {service.price}
-                  </span>
-                  <button className="text-[var(--color-primary-bg)] hover:text-[var(--color-white)] hover:bg-[var(--color-primary-bg)] px-4 py-1 rounded-full border border-[var(--color-primary-bg)] transition-colors duration-300">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                </div>
+          {services.map((service, index) => (
+            <div key={index} className="card w-full hover:shadow-xl duration-300 transform-all bg-base-100 shadow-md border border-gray-100">
+            <figure className="px-4 pt-4">
+              <img src={service.img} alt={service.title} className="rounded-lg h-40 object-cover w-full" />
+            </figure>
+            <div className="card-body p-4">
+              <h2 className="card-title text-base">{service.title}</h2>
+              <div className="card-actions items-center justify-end mt-2">
+              <p className="text-sm text-red-600 font-semibold">
+                Price : ${service?.price}
+              </p>
+                <button className="text-red-500 cursor-pointer hover:text-red-700">
+                  <FaArrowRight />
+                </button>
               </div>
             </div>
+          </div>
           ))}
         </div>
 
         {/* More Services Button */}
         <div className="text-center">
-        <button className="bg-[var(--color-primary-bg)] hover:bg-gradient-to-bl from-primary-bg to-orange-300 text-[var(--color-white)] py-3 px-6 rounded-md font-medium shadow-lg transition-all duration-300">
+        <button className="bg-[var(--color-primary-bg)] cursor-pointer hover:bg-gradient-to-bl from-primary-bg to-orange-300 text-[var(--color-white)] py-3 px-6 rounded-md font-medium shadow-lg transition-all duration-300">
           More Services
         </button>
         </div>
