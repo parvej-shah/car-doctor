@@ -1,7 +1,6 @@
 'use client';
 import { FaFileDownload } from 'react-icons/fa';
 import { MdArrowForwardIos } from 'react-icons/md';
-import { GiCarWheel } from 'react-icons/gi';
 import Image from 'next/image';
 
 const DownloadSection = () => {
