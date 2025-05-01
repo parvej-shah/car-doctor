@@ -1,15 +1,16 @@
 "use client";
+import Link from 'next/link';
 import { useState } from 'react';
 import { FiArrowRight } from 'react-icons/fi';
-export default function Services(){
-      const [activeService, setActiveService] = useState('full-car-repair');
+export default function Services({activeServiceId}) {
+      const [activeService, setActiveService] = useState(activeServiceId);
     
       const services = [
-        { id: 'full-car-repair', name: 'Full Car Repair' },
-        { id: 'engine-repair', name: 'Engine Repair' },
-        { id: 'automatic-services', name: 'Automatic Services' },
-        { id: 'engine-oil-change', name: 'Engine Oil Change' },
-        { id: 'battery-charge', name: 'Battery Charge' }
+        { id: '68132a7769c8e8edfc03b99a', name: 'Engine Oil Change' },
+        { id: '68132a7769c8e8edfc03b99d', name: 'Engine Repair' },
+        { id: '68132a7769c8e8edfc03b99e', name: 'Automatic Services' },
+        { id: '68132a7769c8e8edfc03b99c', name: 'Full car Repair' },
+        { id: '68132a7769c8e8edfc03b99b', name: 'Battery Charge' }
       ];
     return (
       <div className="w-full p-8 bg-secondary-bg rounded-lg">
@@ -17,7 +18,8 @@ export default function Services(){
         
         <div className="space-y-4">
             {services.map((service) => (
-            <div 
+            <Link 
+                href={`/services/${service.id}`}
                 key={service.id}
                 className={`flex group justify-between items-center p-4 rounded-lg transition-all duration-200 cursor-pointer ${
                 activeService === service.id 
@@ -30,7 +32,7 @@ export default function Services(){
                 <FiArrowRight className={`${
                 activeService === service.id ? 'text-white' : 'text-primary-bg'
                 }`} />
-            </div>
+            </Link>
             ))}
         </div>
     </div>

@@ -1,7 +1,9 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 
 let cachedClient = null;
-
+export const dbCollections = {
+    servicesCollection: "services",
+}
 export default async function dbConnect(collectionName) {
   if (cachedClient) {
     return cachedClient.db("car-doctor").collection(collectionName);

@@ -1,7 +1,7 @@
 import React from 'react';
 
-const UniqueCarEngineService = () => {
-  const services = [
+const UniqueCarEngineService = ({services,title,description}) => {
+  const servicess = [
     {
       title: "Instant Car Services",
       description: "It Uses A Dictionary Of Over 200 Latin Words, Combined With A Model Sentence Structures."
@@ -28,10 +28,10 @@ const UniqueCarEngineService = () => {
 
   return (
     <section className="max-w-6xl mx-auto px-4 py-4">
-      <h1 className="text-3xl font-bold mb-4">Unique Car Engine Service</h1>
+      <h1 className="text-3xl font-bold mb-4">{title}</h1>
       
       <p className="text-gray-600 mb-8">
-        {placeholderText}
+        {description}
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -40,8 +40,8 @@ const UniqueCarEngineService = () => {
             key={index} 
             className="bg-gray-100 p-6 rounded-lg border-t-4 border-primary-bg hover:shadow-md transition-shadow"
           >
-            <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-            <p className="text-gray-600">{service.description}</p>
+            <h3 className="text-xl font-semibold mb-3">{service.name}</h3>
+            <p className="text-gray-600">{service.details}</p>
           </div>
         ))}
       </div>

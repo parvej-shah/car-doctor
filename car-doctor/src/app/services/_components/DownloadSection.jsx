@@ -3,7 +3,7 @@ import { FaFileDownload } from 'react-icons/fa';
 import { MdArrowForwardIos } from 'react-icons/md';
 import Image from 'next/image';
 
-const DownloadSection = () => {
+const DownloadSection = ({price}) => {
   return (
     <div className="flex flex-col gap-6 p-4">
 
@@ -54,7 +54,7 @@ const DownloadSection = () => {
 
       {/* Price and Checkout */}
       <div className="flex flex-col items-center gap-4 mt-6">
-        <h3 className="text-primary-text text-xl font-semibold">Price $250.00</h3>
+        <h3 className="text-primary-text text-xl font-semibold">Price ${price}</h3>
         <button className="btn bg-primary-bg text-white w-full py-3 rounded-md font-bold">
           Proceed Checkout
         </button>

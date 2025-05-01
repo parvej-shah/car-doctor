@@ -1,7 +1,7 @@
 "use client";
 import Image from 'next/image';
 
-const AutoRepairServices = () => {
+const AutoRepairServices = ({img}) => {
 
 
   return (

@@ -1,4 +1,5 @@
-import dbConnect from "@/lib/dbConnect";
+import dbConnect, { dbCollections } from "@/lib/dbConnect";
+import Link from "next/link";
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 
@@ -22,7 +23,7 @@ const ServicesSection = async() => {
       price: "$20.00",
     },
   ];
-  const servicesCollection = await dbConnect("services");
+  const servicesCollection = await dbConnect(dbCollections.servicesCollection);
   const services = await servicesCollection.find({}).toArray();
   return (
     <section className="py-16 bg-[var(--color-secondary-bg)]">
@@ -55,9 +56,9 @@ const ServicesSection = async() => {
               <p className="text-sm text-red-600 font-semibold">
                 Price : ${service?.price}
               </p>
-                <button className="text-red-500 cursor-pointer hover:text-red-700">
+                <Link href={`/services/${service._id}`} className="text-red-500 cursor-pointer hover:text-red-700">
                   <FaArrowRight />
-                </button>
+                </Link>
               </div>
             </div>
           </div>
