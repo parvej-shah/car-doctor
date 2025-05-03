@@ -2,8 +2,9 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { Search, ShoppingBag } from "lucide-react";
+import { CloudCog, Search, ShoppingBag } from "lucide-react";
 import Image from "next/image";
+import {signIn } from "next-auth/react"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -143,7 +144,7 @@ const Navbar = () => {
           <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-block">
             <Search className="w-5 h-5" />
           </button>
-          <button className="btn btn-outline btn-primary btn-block">
+          <button onClick={() => {signIn("google",{ callbackUrl: "/" });console.log("Button clicked")}} className="btn btn-outline btn-primary btn-block">
             Appointment
           </button>
         </div>
