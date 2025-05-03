@@ -1,4 +1,5 @@
 import CredentialsProvider from "next-auth/providers/credentials";
+import dbConnect, { dbCollections } from "./dbConnect";
 const authOptions = {
     providers: [
         CredentialsProvider({
@@ -13,12 +14,16 @@ const authOptions = {
             password: { label: "Password", type: "password" }
           },
           async authorize(credentials, req) {
-            // Add logic here to look up the user from the credentials supplied
-            const user = { id: "1", name: "J Smith", email: "jsmith@example.com" }
-            console.log(credentials);
+            
+
+            const { email, password } = credentials;
+            const user = await dbConnect(dbCollections.usersCollection).findOne({ email});
             
             if (user) {
+
+              //TODO: Add password hashing and verification here
               // Any object returned will be saved in `user` property of the JWT
+
               return user
             } else {
               // If you return null then an error will be displayed advising the user to check their details.

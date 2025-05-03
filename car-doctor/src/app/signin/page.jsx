@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import SignUpFrom from './SignUpForm';
 import SocialLogin from '@/global_components/SocialLogin';
-export default function SignUpComponent() {
+import SignInForm from './SignInForm';
+export default function SignIn() {
 
   return (
     <div className="flex items-center justify-center min-h-screen" style={{
@@ -40,16 +40,16 @@ export default function SignUpComponent() {
         {/* Right side with form */}
         <div className="w-full md:w-1/2 p-6 md:p-10 border border-gray-300 rounded-lg shadow-lg bg-white/50">
           <div className="max-w-md mx-auto">
-            <h1 className="text-3xl font-bold text-center mb-8 text-[#444444]">Sign Up</h1>
+            <h1 className="text-3xl font-bold text-center mb-8 text-[#444444]">Sign In</h1>
             
-            <SignUpFrom/>
+            <SignInForm/>
             
             <SocialLogin/>
             
             <p className="mt-8 text-center text-sm text-[#737373]">
-              Already have an account?{' '}
-              <Link href="/login" className="text-[#FF3811] font-medium hover:underline">
-                Login
+              Don't have an account?{' '}
+              <Link href="/signup" className="text-[#FF3811] font-medium hover:underline">
+                Sign Up
               </Link>
             </p>
           </div>
