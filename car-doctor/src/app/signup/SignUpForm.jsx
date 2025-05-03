@@ -1,7 +1,9 @@
 "use client"
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 export default function SignUpComponent() {
+    const router = useRouter();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -17,16 +19,26 @@ export default function SignUpComponent() {
         }));
       };
     
-      const handleSubmit = (e) => {
+      const handleSubmit = async(e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
-        if(formData.password !== formData.confirmPassword) {
+        const { name, email, password, confirmPassword } = formData;
+        if(password !== confirmPassword) {
           alert("Passwords do not match!");
           return;
         }
-        const {data} = axios.post('/signup/api/', formData)
+        const data = await axios.post('/signup/api/', {name,email,password})
+        console.log(data);
+        
         if(data.status === 200) {
-          alert("User Created Successfully!");
+            setFormData({
+              name: '',
+              email: '',
+              password: '',
+              confirmPassword: ''
+            });
+            router.push('/signin');
+            alert("User Created Successfully!");
         } else if(data.status === 304) {
           alert("User Already Exists!");
         } else {
