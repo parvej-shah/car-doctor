@@ -20,7 +20,11 @@ export default function SignInForm() {
       const handleSubmit = async(e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
-        await signIn('credentials', { ...formData, redirect: false, callbackUrl: '/' });
+        const result = await signIn('credentials', { ...formData, callbackUrl: '/' });
+        if (result.error) {
+          alert('Invalid email or password');
+          console.error('Sign in error:', result.error);
+        }
       };
 
       return (

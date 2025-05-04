@@ -2,6 +2,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/global_components/Navbar";
 import Footer from "@/global_components/Footer";
+import SessionProviders from "@/providers/SessionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,14 +22,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
+      <SessionProviders>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar />
         {children}
         <Footer />
-        <div className="footer-note">© 2023 Car Doctor. All rights reserved.</div>
       </body>
+      </SessionProviders>
     </html>
   );
 }
