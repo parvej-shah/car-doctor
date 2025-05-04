@@ -1,9 +1,8 @@
 "use client"
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 export default function SignInForm() {
-    const router = useRouter();
+    const [formSubmitted, setFormSubmitted] = useState(false);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -20,10 +19,14 @@ export default function SignInForm() {
       const handleSubmit = async(e) => {
         e.preventDefault();
         console.log('Form submitted:', formData);
+        setFormSubmitted(true);
         const result = await signIn('credentials', { ...formData, callbackUrl: '/' });
         if (result.error) {
           alert('Invalid email or password');
           console.error('Sign in error:', result.error);
+        } else {
+          setFormSubmitted(false);
+          alert('Sign in successful!');
         }
       };
 
@@ -66,7 +69,7 @@ export default function SignInForm() {
                 type="submit"
                 className="w-full bg-[#FF3811] hover:bg-[#e53110] text-white font-medium py-3 px-4 rounded transition duration-300"
               >
-                Sign In
+                {formSubmitted?"Signing in....": "Sign In"}
               </button>
             </form>
       )

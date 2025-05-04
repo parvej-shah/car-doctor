@@ -47,6 +47,9 @@ const authOptions = {
           }
         })
       ],
+      pages: {
+        signIn: '/signin',
+      },
     callbacks: {
       async signIn({ user, account, profile }) {
         return true;

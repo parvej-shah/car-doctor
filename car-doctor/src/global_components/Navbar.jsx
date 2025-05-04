@@ -2,15 +2,16 @@
 
 import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { CloudCog, Search, ShoppingBag } from "lucide-react";
+import { Search, ShoppingBag, UserRoundIcon } from "lucide-react";
 import Image from "next/image";
-import {signIn } from "next-auth/react"
+import { signIn, signOut, useSession } from "next-auth/react"
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
   const pathname = usePathname();
-
+  const session = useSession();
+  console.log(session);
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About", path: "/about" },
@@ -22,7 +23,7 @@ const Navbar = () => {
   // Close drawer when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (menuRef.current && !(menuRef.current, HTMLElement).contains(event.target , Node)) {
+      if (menuRef.current && !(menuRef.current, HTMLElement).contains(event.target, Node)) {
         setIsMenuOpen(false);
       }
     };
@@ -56,9 +57,8 @@ const Navbar = () => {
               <li key={item.name}>
                 <a
                   href={item.path}
-                  className={`relative group ${
-                    pathname === item.path ? "text-primary-bg" : "text-primary-text"
-                  }`}
+                  className={`relative group ${pathname === item.path ? "text-primary-bg" : "text-primary-text"
+                    }`}
                 >
                   {item.name}
                   <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-primary-bg transition-all group-hover:w-full"></span>
@@ -81,6 +81,8 @@ const Navbar = () => {
             </button>
           </div>
 
+
+
           {/* Mobile hamburger button */}
           <div className="lg:hidden">
             <button
@@ -92,64 +94,82 @@ const Navbar = () => {
               <span className="block h-0.5 w-full bg-primary transition-all duration-300"></span>
             </button>
           </div>
+          <div className="dropdown dropdown-end">
+            <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                <UserRoundIcon className="w-full"/>
+            </div>
+            <ul
+              tabIndex={0}
+              className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+              {session.status == "authenticated"?(<div>
+                <li>
+                <a className="justify-between">
+                  Profile
+                </a>
+              </li>
+              <li><a>Settings</a></li>
+              <li onClick={() => signOut()}><a>Logout</a></li>
+              </div>):(<li onClick={() => signIn()}><a>Login</a></li>)}
+            </ul>
+          </div>
         </div>
       </div>
 
-      {/* Overlay */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
-          onClick={() => setIsMenuOpen(false)}
-        ></div>
-      )}
-
-      {/* Side Drawer */}
+      {/* Overlay */ }
+  {
+    isMenuOpen && (
       <div
-        ref={menuRef}
-        className={`fixed top-0 left-0 w-64 h-full bg-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
+        onClick={() => setIsMenuOpen(false)}
+      ></div>
+    )
+  }
+
+  {/* Side Drawer */ }
+  <div
+    ref={menuRef}
+    className={`fixed top-0 left-0 w-64 h-full bg-white z-50 shadow-lg transform transition-transform duration-300 ease-in-out ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+      }`}
+  >
+    <div className="flex justify-between items-center p-4 border-b">
+      <span className="text-lg font-bold text-primary-text">Menu</span>
+      <button
+        onClick={() => setIsMenuOpen(false)}
+        className="btn btn-ghost btn-circle"
       >
-        <div className="flex justify-between items-center p-4 border-b">
-          <span className="text-lg font-bold text-primary-text">Menu</span>
-          <button
-            onClick={() => setIsMenuOpen(false)}
-            className="btn btn-ghost btn-circle"
-          >
-            ✕
-          </button>
-        </div>
-
-        <ul className="flex flex-col mt-4 px-4 text-primary-text font-medium">
-          {navItems.map((item) => (
-            <li key={item.name}>
-              <a
-                href={item.path}
-                onClick={() => setIsMenuOpen(false)}
-                className={`block py-2 relative group ${
-                  pathname === item.path ? "text-primary" : "text-primary-text"
-                }`}
-              >
-                {item.name}
-                <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        <div className="flex flex-col gap-4 mt-6 px-4">
-          <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-block">
-            <ShoppingBag className="w-5 h-5" />
-          </button>
-          <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-block">
-            <Search className="w-5 h-5" />
-          </button>
-          <button onClick={() => {signIn("google",{ callbackUrl: "/" });console.log("Button clicked")}} className="btn btn-outline btn-primary btn-block">
-            Appointment
-          </button>
-        </div>
-      </div>
+        ✕
+      </button>
     </div>
+
+    <ul className="flex flex-col mt-4 px-4 text-primary-text font-medium">
+      {navItems.map((item) => (
+        <li key={item.name}>
+          <a
+            href={item.path}
+            onClick={() => setIsMenuOpen(false)}
+            className={`block py-2 relative group ${pathname === item.path ? "text-primary" : "text-primary-text"
+              }`}
+          >
+            {item.name}
+            <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div className="flex flex-col gap-4 mt-6 px-4">
+      <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-block">
+        <ShoppingBag className="w-5 h-5" />
+      </button>
+      <button className="btn bg-transparent border-none shadow-none text-primary-text hover:scale-105 transition-all duration-300 hover:text-primary-bg btn-block">
+        <Search className="w-5 h-5" />
+      </button>
+      <button onClick={() => { signIn() }} className="btn btn-outline btn-primary btn-block">
+        Appointment
+      </button>
+    </div>
+  </div>
+    </div >
   );
 };
 
